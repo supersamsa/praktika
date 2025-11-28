@@ -9,7 +9,8 @@
 
 
 int createMatrix(int matrix[COL][ROW]);
-
+int oddRowSum(int matrix[COL][ROW]);
+void printMatrix(int matrix[COL][ROW]);
 #endif
 /*
 Функции реализации ввода: Ввод по спирали снаружи-внутрь

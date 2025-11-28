@@ -8,19 +8,23 @@ int main() {
 
     switch (input) {
     case 'a': {
-      printf("ewrw");
       int result = createMatrix(matrix);
       break;
+    }
+    case 'b':
+    printMatrix(matrix);
+    break;
+    case 'c':
+    break;
+    case 'd':{
+        int result = oddRowSum(matrix);
+            printf("%d", result);
+        break;
     }
     default:
       break;
     }
-    for (int i = 0; i < COL; i++) {
-      for (int j = 0; j < ROW; j++) {
-        printf("%3d ", matrix[i][j]);
-      }
-      printf("\n");
-    }
+    
   }
 
   return 0;
