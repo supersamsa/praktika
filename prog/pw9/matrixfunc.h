@@ -7,13 +7,9 @@
 #define COL 10 
 #define ROW 10
 
-
 int createMatrix(int matrix[COL][ROW]);
 int oddRowSum(int matrix[COL][ROW]);
-void printMatrix(int matrix[COL][ROW]);
+void minNMaxIndexes(int matrix[COL][ROW]);
+void printMatrix(int matrix[COL][ROW]);     
+
 #endif
-/*
-Функции реализации ввода: Ввод по спирали снаружи-внутрь
-Определение двумерных индексов элементов между минимальным и максимальным значениями матрицы
-Определить сумму всех не четных столбцов матрицы.
-*/

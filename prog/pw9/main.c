@@ -3,37 +3,51 @@
 int main() {
   char input = ' ';
   int matrix[COL][ROW];
+  int matrixInitialized = 0; 
+  
   while (input != 'e') {
+    
     scanf(" %c", &input);
 
     switch (input) {
     case 'a': {
       int result = createMatrix(matrix);
+      if (result == 0) {
+        matrixInitialized = 1;
+      } else {
+        printf("EROREROREO\n");
+      }
       break;
     }
     case 'b':
-    printMatrix(matrix);
-    break;
+      if (matrixInitialized) {
+        printMatrix(matrix);
+      } else {
+        printf("EERORORROEOE\n");
+      }
+      break;
     case 'c':
-    break;
+      if (matrixInitialized) {
+        minNMaxIndexes(matrix);
+      } else {
+        printf("EERORORRORORO\n");
+      }
+      break;
     case 'd':{
+      if (matrixInitialized) {
         int result = oddRowSum(matrix);
-            printf("%d", result);
-        break;
+        printf("%d\n", result);
+      } else {
+        printf("EEROROROROROR\n");
+      }
+      break;
     }
+    case 'e':
+      break;
     default:
       break;
     }
-    
   }
 
   return 0;
 }
-
-/*
- a. Функции реализации ввода: Ввод по спирали снаружи-внутрь (вводить матрицу из
- файла <) b. Представление массива (матрица значений) (указать индексы или
- номера) c. Определение двумерных индексов элементов между минимальным и
- максимальным значениями матрицы d. Определить сумму всех не четных столбцов
- матрицы. e. Выход
-*/
