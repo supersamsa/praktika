@@ -3,10 +3,10 @@
 int main() {
   char input = ' ';
   int matrix[COL][ROW];
-  int matrixInitialized = 0; 
-  
+  int matrixInitialized = 0;
+
   while (input != 'e') {
-    
+
     scanf(" %c", &input);
 
     switch (input) {
@@ -33,7 +33,7 @@ int main() {
         printf("EERORORRORORO\n");
       }
       break;
-    case 'd':{
+    case 'd': {
       if (matrixInitialized) {
         int result = oddRowSum(matrix);
         printf("%d\n", result);
