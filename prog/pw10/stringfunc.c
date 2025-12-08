@@ -47,8 +47,10 @@ void printChar(char c) {
     break;
   }
 }
-
-void printChars(char buff[]) {
+/* 1. Посчитать сколько и каких символов есть в тексте. Вывести
+таблицу оформленную \t и \n удобную для зрительного восприятия.
+*/
+void countChars(char buff[]) {
   int capacity = 256;
   char *symbols = malloc(capacity * sizeof(char));
   int *counts = malloc(capacity * sizeof(int));
@@ -98,13 +100,58 @@ void printChars(char buff[]) {
   }
 
   printf("____________________\n");
-  printf("Всего уникальных символов: %d\n", unique);
+  printf("Unique symbols: %d\n", unique);
 
   free(symbols);
   free(counts);
 }
+/*
+ 2. подсчитывает количество букв в каждом втором слове.
+*/
+void countSecWordsChars(char buff[]) {
+  int wordCount = 0;
+  int charCount = 0;
+  int i = 0;
 
-int countChars();
-int countSecWordsChars();
-int contInputWordLen();
-void output();
+  while (buff[i] != '\0') {
+    while (buff[i] != '\0' && !isalnum(buff[i]) && buff[i] != '_') {
+      i++;
+    }
+
+    if (buff[i] == '\0')
+      break;
+
+    wordCount++;
+
+    charCount = 0;
+    while (buff[i] != '\0' && (isalnum(buff[i]) || buff[i] == '_')) {
+      charCount++;
+      i++;
+    }
+
+    if (wordCount % 2 == 0) {
+      printf("len: %d\n", charCount);
+    }
+  }
+}
+/*
+ 3. Подсчитывает, сколько слов имеют указанную пользователем длину.
+*/
+int countInputWordLen(char buff[], int length) {
+  int result = 0;
+
+  int curentLen = 0;
+
+  while (buff[i] != '\0') {
+    if (buff[i] == '\0')
+      break;
+  }
+
+  return result;
+}
+/*
+ 4. Разработать функцию которая Делит слово на два и оставляет большую часть.
+Пример: жук -> к, солнце -> сол и обработать ей каждое слово в тексте:
+
+*/
+void output(char buff[]);

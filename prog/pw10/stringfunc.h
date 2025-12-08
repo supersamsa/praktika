@@ -6,10 +6,9 @@
 #include <stdlib.h>
 
 char *readInput();
-void printChars(char buff[]);
-int countChars(char buff[]);
-int countSecWordsChars(char buff[]);
+void countSecWordsChars(char buff[]);
+void countChars(char buff[]);
 int countInputWordLen(char buff[], int length);
-void processWords(char buff[]);
+void output(char buff[]);
 
 #endif

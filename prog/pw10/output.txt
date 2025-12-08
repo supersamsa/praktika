@@ -97,4 +97,31 @@ ____________________
  0x87        1 
  0xB3        4 
 ____________________
-Всего уникальных символов: 87
+Unique symbols: 87
+len: 4	
+len: 2	
+len: 6	
+len: 1	len: 5	
+len: 2	len: 4	len: 2	len: 5	len: 4	len: 1	
+len: 2	
+len: 5	len: 3	len: 4	
+len: 6	len: 7	len: 3	
+len: 1	
+
+len: 9	len: 3	
+len: 9	
+len: 5	len: 3	len: 1	len: 3	len: 3	len: 3	len: 8	
+len: 2	
+len: 5	len: 1	
+len: 7	len: 3	
+
+len: 3	len: 3	
+len: 3	len: 5	len: 1	len: 2	len: 2	len: 2	
+len: 2	
+len: 1	len: 5	len: 6	
+len: 3	len: 5	len: 2	len: 3	len: 5	len: 5	len: 7	
+len: 2	
+len: 6	len: 2	
+len: 5	
+len: 3	len: 4	len: 6	len: 3	len: 1	
+len: 2	len: 3	
