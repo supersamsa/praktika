@@ -39,10 +39,10 @@ void printChar(char c) {
     printf("  ' '");
     break;
   default:
-    if (isprint((unsigned char)c)) {
+    if (isprint(c)) {
       printf("%4c", c);
     } else {
-      printf(" 0x%02X", (unsigned char)c);
+      printf(" 0x%02X", ( char)c);
     }
     break;
   }
@@ -108,10 +108,14 @@ void countChars(char buff[]) {
 /*
  2. подсчитывает количество букв в каждом втором слове.
 */
+#include <ctype.h>
+#include <stdio.h>
+
 void countSecWordsChars(char buff[]) {
   int wordCount = 0;
   int charCount = 0;
   int i = 0;
+  int lineCounter = 0;
 
   while (buff[i] != '\0') {
     while (buff[i] != '\0' && !isalnum(buff[i]) && buff[i] != '_') {
@@ -130,8 +134,19 @@ void countSecWordsChars(char buff[]) {
     }
 
     if (wordCount % 2 == 0) {
-      printf("len: %d\n", charCount);
+      printf("len: %-3d", charCount);
+      lineCounter++;
+
+      if (lineCounter % 5 == 0) {
+        printf("\n");
+      } else {
+        printf(" ");
+      }
     }
+  }
+
+  if (lineCounter % 5 != 0) {
+    printf("\n");
   }
 }
 /*
@@ -139,19 +154,76 @@ void countSecWordsChars(char buff[]) {
 */
 int countInputWordLen(char buff[], int length) {
   int result = 0;
-
+  int charCount = 0;
   int curentLen = 0;
-
+  int i = 0;
   while (buff[i] != '\0') {
     if (buff[i] == '\0')
       break;
+    while (buff[i] != '\0') {
+      while (buff[i] != '\0' && !isalnum(buff[i]) && buff[i] != '_') {
+        i++;
+      }
+
+      if (buff[i] == '\0')
+        break;
+
+      charCount = 0;
+      while (buff[i] != '\0' && (isalnum(buff[i]) || buff[i] == '_')) {
+        charCount++;
+        i++;
+      }
+
+      if (charCount == length) {
+        result++;
+      }
+    }
   }
 
   return result;
 }
+void printLarger(char *word, int length) {
+  if (length == 0)
+    return;
+
+  int mid = length / 2;
+
+  if (mid >= length - mid) {
+    for (int i = 0; i < mid; i++) {
+      putchar(word[i]);
+    }
+  } else {
+    for (int i = mid; i < length; i++) {
+      putchar(word[i]);
+    }
+  }
+}
+
 /*
  4. Разработать функцию которая Делит слово на два и оставляет большую часть.
 Пример: жук -> к, солнце -> сол и обработать ей каждое слово в тексте:
-
 */
-void output(char buff[]);
+void output(char buff[]) {
+  int i = 0;
+
+  while (buff[i] != '\0') {
+    while (buff[i] != '\0' && !isalnum(buff[i]) && buff[i] != '_') {
+      putchar(buff[i]);
+      i++;
+    }
+
+    if (buff[i] == '\0')
+      break;
+
+    int wordStart = i;
+    int charCount = 0;
+
+    while (buff[i] != '\0' && (isalnum(buff[i]) || buff[i] == '_')) {
+      charCount++;
+      i++;
+    }
+
+    printLarger(&buff[wordStart], charCount);
+  }
+  printf("\n");
+}
