@@ -7,11 +7,11 @@
 #include <time.h>
 
 typedef struct {
-  int *day;    // указатель на динамическую память
-  int *month;  // указатель на динамическую память
-  int *year;   // указатель на динамическую память
-  int *hour;   // указатель на динамическую память
-  int *minute; // указатель на динамическую память
+  int *day;
+  int *month;
+  int *year;
+  int *hour;
+  int *minute;
 } DateTime;
 
 DateTime *dateTimeCreate(int day, int month, int year, int hour, int minute);
