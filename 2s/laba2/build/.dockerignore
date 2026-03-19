@@ -1,0 +1,47 @@
+# Объектные файлы
+*.o
+*.a
+*.so
+
+# Исполняемые файлы
+lab2_program
+!lab2_program
+
+# Временные файлы
+*~
+*.swp
+*.swo
+*.log
+*.tmp
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Docker файлы
+build/Dockerfile*
+build/docker-compose*.yml
+!build/.dockerignore
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Редакторы
+.vscode/
+.idea/
+*.sublime-*
+
+# Документация
+README.md
+*.pdf
+*.docx
+
+# Архивы
+*.zip
+*.tar
+*.gz
+
+# Отчеты
+report/

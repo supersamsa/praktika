@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Основной сервис для запуска программы
+  app:
+    build: 
+      context: ..
+      dockerfile: build/Dockerfile
+    container_name: lab2-app
+    image: lab2-image:latest
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    command: ./lab2_program
+    networks:
+      - lab2-network
+
+  # Сервис для разработки с монтированием кода
+  dev:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile.dev
+    container_name: lab2-dev
+    image: lab2-dev:latest
+    volumes:
+      - ..:/workspace
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    # Для GDB нужны дополнительные права
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    command: /bin/bash
+    networks:
+      - lab2-network
+
+  # Оптимизированная версия (маленький размер)
+  small:
+    build:
+      context: ..
+      dockerfile: build/Dockerfile.multistage
+    container_name: lab2-small
+    image: lab2-small:latest
+    stdin_open: true
+    tty: true
+    working_dir: /app
+    command: ./lab2_program
+    networks:
+      - lab2-network
+
+# Сеть для контейнеров
+networks:
+  lab2-network:
+    driver: bridge

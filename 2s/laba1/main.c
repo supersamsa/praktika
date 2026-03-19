@@ -50,10 +50,10 @@ int main() {
 
   printf("unix: %lld\n\n", dateTimeToUnixTimestamp(dt1));
 
-  dateTimeInputFormatted(dt1, "%d.%m.%Y");
-  printf("now: ");
-  dateTimePrint(dt1);
-  printf("\n\n");
+ // dateTimeInputFormatted(dt1, "%d.%m.%Y");
+ // printf("now: ");
+ // dateTimePrint(dt1);
+ // printf("\n\n");
 
   dateTimeDestroy(dt1);
   dateTimeDestroy(dt2);
