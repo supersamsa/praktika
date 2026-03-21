@@ -1,0 +1,112 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%;"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></td><td><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #579">#ifndef DEVICESTRUCT_H</span>
+<span style="color: #579">#define DEVICESTRUCT_H</span>
+
+<span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&lt;stdbool.h&gt;</span>
+<span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&lt;stdio.h&gt;</span>
+<span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&lt;stdlib.h&gt;</span>
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">enum</span><span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span>DISPLAY_LCD,
+<span style="color: #BBB">  </span>DISPLAY_OLED,
+<span style="color: #BBB">  </span>DISPLAY_AMOLED,
+<span style="color: #BBB">  </span>DISPLAY_EINK
+}<span style="color: #BBB"> </span>DisplayType;
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">enum</span><span style="color: #BBB"> </span>{<span style="color: #BBB"> </span>CPU_LOW_POWER,<span style="color: #BBB"> </span>CPU_STANDARD,<span style="color: #BBB"> </span>CPU_HIGH_PERF<span style="color: #BBB"> </span>}<span style="color: #BBB"> </span>CPUType;
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">enum</span><span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span>MEM_16KB<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,
+<span style="color: #BBB">  </span>MEM_32KB<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>,
+<span style="color: #BBB">  </span>MEM_64KB<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>,
+<span style="color: #BBB">  </span>MEM_128KB<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>
+}<span style="color: #BBB"> </span>MemorySize;
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">enum</span><span style="color: #BBB"> </span>{<span style="color: #BBB"> </span>WATER_NONE<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>,<span style="color: #BBB"> </span>WATER_IP67<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>,<span style="color: #BBB"> </span>WATER_IP68<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span><span style="color: #BBB"> </span>}<span style="color: #BBB"> </span>WaterResistance;
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">struct</span><span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>display_type<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>brightness<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>time_format<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>memory<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>cpu_type<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>water_resist<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+}<span style="color: #BBB"> </span>BitDevice;
+
+<span style="color: #080; font-weight: bold">typedef</span><span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">struct</span><span style="color: #BBB"> </span><span style="color: #B06; font-weight: bold">__attribute__</span>((packed))<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>display_type<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>brightness<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>time_format<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>memory<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>cpu_type<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+<span style="color: #BBB">  </span><span style="color: #339; font-weight: bold">unsigned</span><span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>water_resist<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>;
+}<span style="color: #BBB"> </span>PackedBitDevice;
+
+BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #06B; font-weight: bold">create_bit_device</span>(DisplayType<span style="color: #BBB"> </span>disp,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>bright,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>format,
+<span style="color: #BBB">                             </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>alarm,<span style="color: #BBB"> </span>MemorySize<span style="color: #BBB"> </span>mem,<span style="color: #BBB"> </span>CPUType<span style="color: #BBB"> </span>cpu,
+<span style="color: #BBB">                             </span>WaterResistance<span style="color: #BBB"> </span>water);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">destroy_bit_device</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_set_brightness</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>brightness);
+<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_get_brightness</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_set_alarm</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>status);
+<span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_get_alarm</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device);
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_print_info</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device);
+
+<span style="color: #579">#endif</span>
+</pre></td></tr></table></div>

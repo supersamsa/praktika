@@ -3,11 +3,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -g
 TARGET = lab2_program
 
-# Пути к исходным файлам (на уровень выше)
-SRC_DIR = ..
-SOURCES = $(SRC_DIR)/main.c $(SRC_DIR)/devicestruct.c $(SRC_DIR)/packeddevice.c
+# Пути к исходным файлам (теперь в текущей директории)
+SOURCES = main.c devicestruct.c packeddevice.c
 OBJECTS = main.o devicestruct.o packeddevice.o
-HEADERS = $(SRC_DIR)/devicestruct.h $(SRC_DIR)/packeddevice.h
+HEADERS = devicestruct.h packeddevice.h
 
 # Цели по умолчанию
 .PHONY: all clean run docker-build docker-run docker-dev docker-clean help
@@ -22,16 +21,16 @@ $(TARGET): $(OBJECTS)
 	@./$(TARGET) 2>/dev/null | grep "Размер" || echo "   Запустите 'make run' для просмотра"
 
 # Компиляция .c файлов в .o
-main.o: $(SRC_DIR)/main.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/main.c -o main.o
+main.o: main.c $(HEADERS)
+	$(CC) $(CFLAGS) -c main.c -o main.o
 	@echo "   Компилирован: main.c"
 
-devicestruct.o: $(SRC_DIR)/devicestruct.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/devicestruct.c -o devicestruct.o
+devicestruct.o: devicestruct.c $(HEADERS)
+	$(CC) $(CFLAGS) -c devicestruct.c -o devicestruct.o
 	@echo "   Компилирован: devicestruct.c"
 
-packeddevice.o: $(SRC_DIR)/packeddevice.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $(SRC_DIR)/packeddevice.c -o packeddevice.o
+packeddevice.o: packeddevice.c $(HEADERS)
+	$(CC) $(CFLAGS) -c packeddevice.c -o packeddevice.o
 	@echo "   Компилирован: packeddevice.c"
 
 # Очистка временных файлов
@@ -47,7 +46,7 @@ run: $(TARGET)
 # Docker цели
 docker-build:
 	@echo "🐳 Сборка Docker образа..."
-	docker build -t lab2-image .
+	cd .. && docker build -f build/Dockerfile -t lab2-image .
 	@echo "✅ Docker образ создан: lab2-image"
 
 docker-run: docker-build
@@ -56,7 +55,7 @@ docker-run: docker-build
 
 docker-dev:
 	@echo "🐳 Запуск интерактивной оболочки в Docker контейнере..."
-	docker run -it --rm -v $(SRC_DIR):/app lab2-image /bin/bash
+	cd .. && docker run -it --rm -v $$(pwd):/app lab2-image /bin/bash
 
 docker-clean:
 	@echo "🐳 Удаление Docker образа..."
@@ -66,7 +65,7 @@ docker-clean:
 # Многоступенчатая сборка (экономия места)
 docker-build-small:
 	@echo "🐳 Сборка оптимизированного Docker образа..."
-	docker build -f Dockerfile.multistage -t lab2-small .
+	cd .. && docker build -f build/Dockerfile.multistage -t lab2-small .
 	@echo "✅ Оптимизированный Docker образ создан: lab2-small"
 
 docker-run-small: docker-build-small

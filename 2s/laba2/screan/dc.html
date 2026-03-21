@@ -1,0 +1,156 @@
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%;"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre></td><td><pre style="margin: 0; line-height: 125%;"><span></span><span style="color: #579">#include</span><span style="color: #BBB"> </span><span style="color: #888">&quot;devicestruct.h&quot;</span>
+
+BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span><span style="color: #06B; font-weight: bold">create_bit_device</span>(DisplayType<span style="color: #BBB"> </span>disp,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>bright,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>format,
+<span style="color: #BBB">                             </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>alarm,<span style="color: #BBB"> </span>MemorySize<span style="color: #BBB"> </span>mem,<span style="color: #BBB"> </span>CPUType<span style="color: #BBB"> </span>cpu,
+<span style="color: #BBB">                             </span>WaterResistance<span style="color: #BBB"> </span>water)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>new_device<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>)malloc(<span style="color: #080; font-weight: bold">sizeof</span>(BitDevice));
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(new_device<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">    </span>fprintf(stderr,<span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Ошибка выделения памяти!</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">return</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>;
+<span style="color: #BBB">  </span>}
+
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>display_type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>disp;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>brightness<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>bright;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>time_format<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>format;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>alarm<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span><span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>memory<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>mem;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>cpu_type<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>cpu;
+<span style="color: #BBB">  </span>new_device<span style="color: #333">-&gt;</span>water_resist<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>water;
+
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">return</span><span style="color: #BBB"> </span>new_device;
+}
+
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">destroy_bit_device</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">    </span>free(device);
+<span style="color: #BBB">  </span>}
+}
+
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_set_brightness</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span>brightness)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">    </span>device<span style="color: #333">-&gt;</span>brightness<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>brightness<span style="color: #BBB"> </span><span style="color: #333">&amp;</span><span style="color: #BBB"> </span><span style="color: #058; font-weight: bold">0x07</span>;
+<span style="color: #BBB">  </span>}
+}
+
+<span style="color: #339; font-weight: bold">int</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_get_brightness</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">return</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>brightness<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">-1</span>;
+}
+
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_set_alarm</span>(BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device,<span style="color: #BBB"> </span><span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span>status)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">    </span>device<span style="color: #333">-&gt;</span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">=</span><span style="color: #BBB"> </span>status<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span><span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>;
+<span style="color: #BBB">  </span>}
+}
+
+<span style="color: #339; font-weight: bold">bool</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_get_alarm</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">return</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span>(device<span style="color: #333">-&gt;</span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">!=</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>)<span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="color: #007020">false</span>;
+}
+
+<span style="color: #339; font-weight: bold">void</span><span style="color: #BBB"> </span><span style="color: #06B; font-weight: bold">bit_device_print_info</span>(<span style="color: #080; font-weight: bold">const</span><span style="color: #BBB"> </span>BitDevice<span style="color: #BBB"> </span><span style="color: #333">*</span>device)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">if</span><span style="color: #BBB"> </span>(device<span style="color: #BBB"> </span><span style="color: #333">==</span><span style="color: #BBB"> </span><span style="color: #007020">NULL</span>)
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">return</span>;
+
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;--- Информация об устройстве (битовые поля) ---</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Тип дисплея: %u</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>display_type);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Яркость: %u</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>brightness);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Формат времени: %s</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>time_format<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;24ч&quot;</span><span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;12ч&quot;</span>);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Будильник: %s</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>alarm_flag<span style="color: #BBB"> </span><span style="color: #333">?</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Вкл&quot;</span><span style="color: #BBB"> </span><span style="color: #333">:</span><span style="color: #BBB"> </span><span style="background-color: #FFF0F0">&quot;Выкл&quot;</span>);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Память: &quot;</span>);
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">switch</span><span style="color: #BBB"> </span>(device<span style="color: #333">-&gt;</span>memory)<span style="color: #BBB"> </span>{
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">case</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">0</span>:
+<span style="color: #BBB">    </span>printf(<span style="background-color: #FFF0F0">&quot;16KB</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">break</span>;
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">case</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">1</span>:
+<span style="color: #BBB">    </span>printf(<span style="background-color: #FFF0F0">&quot;32KB</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">break</span>;
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">case</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">2</span>:
+<span style="color: #BBB">    </span>printf(<span style="background-color: #FFF0F0">&quot;64KB</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">break</span>;
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">case</span><span style="color: #BBB"> </span><span style="color: #00D; font-weight: bold">3</span>:
+<span style="color: #BBB">    </span>printf(<span style="background-color: #FFF0F0">&quot;128KB</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">    </span><span style="color: #080; font-weight: bold">break</span>;
+<span style="color: #BBB">  </span><span style="color: #080; font-weight: bold">default</span><span style="color: #333">:</span>
+<span style="color: #BBB">    </span>printf(<span style="background-color: #FFF0F0">&quot;Unknown</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>);
+<span style="color: #BBB">  </span>}
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Процессор: %u</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>cpu_type);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Водостойкость: %u</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span>device<span style="color: #333">-&gt;</span>water_resist);
+<span style="color: #BBB">  </span>printf(<span style="background-color: #FFF0F0">&quot;Размер структуры (sizeof): %zu байт</span><span style="color: #666; font-weight: bold; background-color: #FFF0F0">\n</span><span style="background-color: #FFF0F0">&quot;</span>,<span style="color: #BBB"> </span><span style="color: #080; font-weight: bold">sizeof</span>(BitDevice));
+}
+</pre></td></tr></table></div>
